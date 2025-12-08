@@ -1,0 +1,64 @@
+name: Tavily
+label:
+  zh_Hans: Tavily
+description:
+  zh_Hans: Tavily is the real‑time search engine for AI agents and RAG workflows — Fast and secure APIs for web search and content extraction.
+version: 1.0.0
+type: tool
+author: langp.cn
+credentials:
+  key:
+    help:
+      en_US:
+      zh_Hans:
+    label:
+      en_US:
+      zh_Hans:
+    placeholder:
+      en_US:
+      zh_Hans:
+    required: true
+    type: secret-input
+    url:
+tools:
+  - name:
+    label:
+      en_US:
+      zh_Hans:
+    human_description:
+      en_US:
+      zh_Hans:
+    llm_description:
+    parameters:
+      - name: query
+        form: llm
+        human_description:
+          en_US:
+          zh_Hans:
+        label:
+          en_US:
+          zh_Hans:
+        llm_description:
+        required:
+        type:
+      - name: options
+        default_value: basic
+        form:
+        human_description:
+          en_US:
+          zh_Hans:
+        label:
+          en_US:
+          zh_Hans:
+        llm_description:
+        options:
+          - label:
+              en_US: Basic
+              zh_Hans: 基本
+            value: basic
+          - label:
+              en_US: Advanced
+              zh_Hans: 高级
+            value: advanced
+        required: false
+        type: select
