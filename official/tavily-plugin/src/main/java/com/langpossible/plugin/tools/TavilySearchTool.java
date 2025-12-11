@@ -4,15 +4,15 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.langpossible.core.components.okhttp.OkHttpManager;
-import com.langpossible.core.plugin.PluginInput;
-import com.langpossible.core.plugin.PluginOutput;
+import com.langpossible.core.plugin.tool.ToolInput;
+import com.langpossible.core.plugin.tool.ToolOutput;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TavilySearch {
+public class TavilySearchTool {
 
-    public PluginOutput execute(PluginInput input) {
+    public ToolOutput execute(ToolInput input) {
         Map<String, String> headerParams = new HashMap<>();
         headerParams.put("Authorization", "Bearer " + input.getCredentials().get("tavily_api_key"));
         headerParams.put("Content-Type", "application/json");
@@ -23,13 +23,13 @@ public class TavilySearch {
         }
         JSONObject jo = JSONUtil.parseObj(responseStr);
 
-        return PluginOutput.builder()
+        return ToolOutput.builder()
                 .text(responseToText(input, jo))
                 .json(jo)
                 .build();
     }
 
-    private String responseToText(PluginInput input, JSONObject jo) {
+    private String responseToText(ToolInput input, JSONObject jo) {
         StringBuilder output = new StringBuilder();
 
         // include_answer
@@ -107,10 +107,10 @@ public class TavilySearch {
 
     /**
      * 构建请求体参数
-     * @param input 输入参数 {@link PluginInput}
+     * @param input 输入参数 {@link ToolInput}
      * @return 请求体参数 {@link Map}
      */
-    private Map<String, Object> buildBodyParams(PluginInput input) {
+    private Map<String, Object> buildBodyParams(ToolInput input) {
         HashMap<String, Object> bodyParams = new HashMap<>();
 
         // 添加查询参数
